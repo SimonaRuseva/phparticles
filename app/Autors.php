@@ -8,4 +8,5 @@ class Autors extends Model
 {
     protected $table = "autors";
     protected $fillable = ["name","age"];
+
 }

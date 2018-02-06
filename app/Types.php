@@ -8,4 +8,5 @@ class Types extends Model
 {
     protected $table = "types";
     protected $fillable = ["name"];
+
 }
