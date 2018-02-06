@@ -65,8 +65,7 @@ class TypesController extends Controller
      */
     public function show($id)
     {
-        $type = Types::find($id);
-        return view('type.show', ["car" => $type]);
+
     }
 
     /**
@@ -104,6 +103,8 @@ class TypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sample = Types::find($id);
+        $sample->delete();
+        return redirect('/types')->with('success', 'Type was deleted!');
     }
 }

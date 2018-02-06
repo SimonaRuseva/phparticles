@@ -38,7 +38,7 @@ class AutorsController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'name'       => 'required|min:4',
+            'name'       => 'required|min:20',
         );
         $validator = Validator::make($request->all(), $rules);
         // process the login
@@ -103,6 +103,8 @@ class AutorsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sample = Autors::find($id);
+        $sample->delete();
+        return redirect('/autors')->with('success', 'Autor was deleted!');
     }
 }

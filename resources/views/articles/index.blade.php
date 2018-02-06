@@ -28,8 +28,9 @@
             <th>autor</th>
             <th>title</th>
             <th>description</th>
+            <th>Actions</th>
 
-            <th>&nbsp;</th>
+
 
         </tr>
         @foreach ($articles as $article)
@@ -44,7 +45,7 @@
                 <td>{{ $article->description}}</td>
                 <td>
 
-                    {{--<a class="btn btn-info" href="{{ route('articles.show',$articles->id) }}" target="_blank">Покажи</a>--}}
+
                     <a href="{{ URL::to('autors/' . $article->id . '/edit') }}" class="btn btn-default">Edit</a>
                     <form action="{{action('ArticlesController@destroy', $article->id )}}" method="post" class="delete_form">
                         {{csrf_field()}}

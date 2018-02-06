@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Ститии</h2>
+                <h2>Автори</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('articles.create') }}"> Добави нова статия</a>
+                <a class="btn btn-success" href="{{ route('articles.create') }}"> Добави нов автор</a>
             </div>
         </div>
     </div>
