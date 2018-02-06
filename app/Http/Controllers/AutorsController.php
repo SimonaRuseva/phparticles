@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Autors;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AutorsController extends Controller
 {
@@ -13,7 +15,8 @@ class AutorsController extends Controller
      */
     public function index()
     {
-        //
+        $autors = Autors::all();
+        return view('autors.index')->with('autors', $autors);
     }
 
     /**
@@ -23,7 +26,7 @@ class AutorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('autors.create');
     }
 
     /**
@@ -34,7 +37,23 @@ class AutorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'name'       => 'required|min:4',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        // process the login
+        if ($validator->fails()) {
+            return redirect('autors/create')
+                ->withErrors($validator)
+                ->withInput($request->all());
+        } else {
+            $subject = new Autors([
+                'name' => $request->get('name'),
+                'age' => $request->get('age')
+            ]);
+            $subject->save();
+            return redirect('autors');
+        }
     }
 
     /**
@@ -56,7 +75,8 @@ class AutorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $autor = Autors::find($id);
+        return view('autors.edit', compact('autors', 'id'))->with('autor', $autor);
     }
 
     /**
@@ -68,7 +88,11 @@ class AutorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $autor = Autors::find($id);
+        $autor->name = $request->get('name');
+        $autor->age = $request->get('age');
+        $autor->save();
+        return redirect('autors')->with('success', 'Author was edited!');
     }
 
     /**
